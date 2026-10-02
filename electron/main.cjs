@@ -186,6 +186,16 @@ async function createWindow() {
         }
         else {
             const distDir = path.join(__dirname, "..", "dist");
+            if (!fs.existsSync(path.join(distDir, "index.html"))) {
+                console.log("[zimo] dist not built. Compiling frontend bundle automatically...");
+                try {
+                    const { execSync } = require("node:child_process");
+                    execSync("npm run build", { cwd: path.join(__dirname, ".."), stdio: "inherit", shell: true });
+                }
+                catch (err) {
+                    console.error("[zimo] build error:", err.message);
+                }
+            }
             const port = await startStaticServer(distDir);
             targetUrl = `http://127.0.0.1:${port}`;
         }

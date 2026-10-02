@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { spawn, execSync } from "node:child_process";
 import { existsSync, createReadStream, statSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import http from "node:http";
 import net from "node:net";
@@ -217,6 +217,15 @@ async function main() {
     const isViteUp = await checkPortInUse(5173);
     let appUrl = "http://127.0.0.1:5173";
     if (!isViteUp) {
+        if (!existsSync(path.join(DIST_DIR, "index.html"))) {
+            console.log("[zemo-app] UI build not found. Compiling frontend bundle automatically...");
+            try {
+                execSync("npm run build", { cwd: ROOT_DIR, stdio: "inherit", shell: true });
+            }
+            catch (err) {
+                console.error("[zemo-app] build error:", err.message);
+            }
+        }
         const port = await startStaticServer(DIST_DIR);
         appUrl = `http://127.0.0.1:${port}`;
     }
