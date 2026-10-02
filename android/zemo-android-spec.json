@@ -1,0 +1,10 @@
+{
+  "package": "com.zemo.assistant",
+  "version": "1.0.0",
+  "appName": "ZEMO",
+  "targetSdk": 34,
+  "minSdk": 26,
+  "orientation": "sensorPortrait",
+  "serverHome": "http://localhost:5173",
+  "builtAt": "2026-09-27T16:48:25.601Z"
+}

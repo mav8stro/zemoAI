@@ -1,0 +1,24 @@
+{
+  "name": "ZEMO - Autonomous Neural Matrix",
+  "short_name": "ZEMO",
+  "description": "Zero Error Machine Operator - Autonomous Neural AI Assistant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#01070e",
+  "theme_color": "#00ffc4",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/zemo-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/zemo-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
