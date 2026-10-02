@@ -420,7 +420,9 @@ All of this lives in `bridge/server.mjs`:
 
 ## Credits & licence
 
-MIT.
+Created and owned by **Muhammed Salman N**.
+
+Licensed under the MIT License.
 
 The boot sound and any tracks in `public/audio/` ship with the project for the
 demo. If you go on to monetise something built on this, clearing the rights to

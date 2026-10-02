@@ -214,7 +214,20 @@ async function main() {
     });
     process.on("exit", cleanup);
     await startBridge();
-    const isViteUp = await checkPortInUse(5173);
+    function checkHttpServer(url) {
+        return new Promise((resolve) => {
+            const req = http.get(url, { timeout: 800 }, (res) => {
+                res.resume();
+                resolve(res.statusCode >= 200 && res.statusCode < 400);
+            });
+            req.on("error", () => resolve(false));
+            req.on("timeout", () => {
+                req.destroy();
+                resolve(false);
+            });
+        });
+    }
+    const isViteUp = await checkHttpServer("http://127.0.0.1:5173");
     let appUrl = "http://127.0.0.1:5173";
     if (!isViteUp) {
         if (!existsSync(path.join(DIST_DIR, "index.html"))) {
